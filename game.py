@@ -84,6 +84,7 @@ class game:
 
 
 g = game(1200,600,"fuel race")
+playing = False
 while True:
     g.new()
     g.run()
