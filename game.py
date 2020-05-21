@@ -5,6 +5,7 @@ from settings import *
 from os import path
 
 class game:
+
     def __init__(self, width, height, title):
         pg.init()
         self.width = width
@@ -19,7 +20,7 @@ class game:
         img = pg.image.load(path.join(img_folder, name))
         img.set_colorkey((0,119,64))
         return img
-        
+
 
 
     def new(self):
@@ -34,8 +35,8 @@ class game:
         self.player = Player(self,10,10,self.player_one,self.flames,PLAYER_ONE_KEY_SET)
         #self.player_2 = Player(self,40,40,self.player_one,self.flames,PLAYER_TWO_KEY_SET)
         self.bar = Bars(self,10,10,100,100,self.player)
-        self.healh_box = Supplies(self,self.health_img)
-        self.fuel_box = Supplies(self,self.fuel_img)
+        self.healh_box = Supplies(self,self.health_img,'health')
+        self.fuel_box = Supplies(self,self.fuel_img,'fuel')
 
     def run(self):
         self.playing = True
@@ -56,7 +57,7 @@ class game:
         self.stuff.update()
         return
 
-    
+
 
     def draw(self):
         self.screen.fill((0,0,0))
@@ -69,7 +70,7 @@ class game:
             pg.draw.rect(self.screen,sprite.health_color,sprite.health_bar)
             pg.draw.rect(self.screen,sprite.fuel_color,sprite.fuel_bar)
         pg.display.flip()
-        
+
 
     def events(self):
         for event in pg.event.get():
@@ -78,10 +79,10 @@ class game:
             if event.type == pg.KEYDOWN:
                 if event.key == pg.K_ESCAPE:
                     self.quit()
-        
 
-    
-        
+
+
+
 g = game(1200,600,"fuel race")
 while True:
     g.new()
